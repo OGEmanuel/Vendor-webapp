@@ -26,7 +26,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "run-p lint check-branch-name"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged":{
