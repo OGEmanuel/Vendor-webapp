@@ -1,0 +1,12 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run Prettier and ESLint
+yarn prettier --write .
+yarn eslint . --fix
+
+# Add changes if any
+git add .
+
+# Run lint-staged to ensure everything is linted
+npx lint-staged
