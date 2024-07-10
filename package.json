@@ -17,12 +17,18 @@
     "test": "npm run typecheck && npm run prettier && npm run lint && npm run vitest && npm run build",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "check-branch-name": "chmod 755 ./hooks/check_branch_naming.sh && sh ./hooks/check_branch_naming.sh"
   },
   "validate-branch-name": {
     "pattern": "^(master|main|staging){1}$|^(c|fix|hotfix|refactor|docs|chore|test|style|perf|feat)/.+$",
     "errorMsg": "Your branch name is in the wrong format"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-p lint check-branch-name"
+    }
+},
   "dependencies": {
     "@mantine/core": "7.11.1",
     "@mantine/hooks": "7.11.1",
