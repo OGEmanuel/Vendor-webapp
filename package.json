@@ -17,7 +17,7 @@
     "test": "npm run typecheck && npm run prettier && npm run lint && npm run vitest && npm run build",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "prepare": "husky install",
+    "prepare": "husky .husky",
     "check-branch-name": "chmod 755 ./hooks/check_branch_naming.sh && sh ./hooks/check_branch_naming.sh"
   },
   "validate-branch-name": {
@@ -28,7 +28,7 @@
     "hooks": {
       "pre-commit": "run-p lint check-branch-name"
     }
-},
+  },
   "dependencies": {
     "@mantine/core": "7.11.1",
     "@mantine/hooks": "7.11.1",
