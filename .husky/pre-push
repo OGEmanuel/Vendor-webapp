@@ -2,6 +2,25 @@
 . "$(dirname "$0")/_/husky.sh"
 . "$(dirname "$0")/common.sh"
 
+# Get the current branch name
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+# Define the branch naming convention excluding master, main, and staging
+ALLOWED_BRANCHES_REGEX="^(c|fix|hotfix|refactor|docs|chore|test|style|perf|feat)/.*$"
+
+# Check if the branch name is master, main, or staging
+if [[ "$BRANCH_NAME" == "master" || "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == "staging" ]]; then
+    echo "Error: Direct pushes to the '$BRANCH_NAME' branch are not allowed."
+    exit 1
+fi
+
+# Check if the branch name follows the allowed naming convention
+if [[ ! "$BRANCH_NAME" =~ $ALLOWED_BRANCHES_REGEX ]]; then
+    echo "Error: Branch name '$BRANCH_NAME' does not follow the naming convention."
+    echo "Allowed branch names: prefixed with c/, fix/, hotfix/, refactor/, docs/, chore/, test/, style/, perf/, feat/"
+    exit 1
+fi
+
 # Run Prettier
 yarn prettier --write .
 
@@ -13,9 +32,6 @@ yarn test --bail
 
 # Run type checks
 yarn tsc --noEmit
-
-# Add changes if any
-git add .
 
 # Run lint-staged to ensure everything is linted
 npx lint-staged
