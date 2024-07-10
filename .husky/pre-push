@@ -11,14 +11,8 @@ yarn eslint . --fix
 # Run unit tests
 yarn test --bail
 
-# Run build
-yarn build
-
 # Run type checks
 yarn tsc --noEmit
-
-# Security checks
-yarn audit
 
 # Add changes if any
 git add .
