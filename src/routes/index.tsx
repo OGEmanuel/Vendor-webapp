@@ -1,8 +1,3 @@
-export function AppRoutes(){
+export function AppRoutes() {}
 
-}
-
-export function AuthRoutes(){
-    
-    
-}
+export function AuthRoutes() {}

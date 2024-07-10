@@ -2,10 +2,23 @@
 . "$(dirname "$0")/_/husky.sh"
 . "$(dirname "$0")/common.sh"
 
-
-# Run Prettier and ESLint
+# Run Prettier
 yarn prettier --write .
+
+# Run ESLint
 yarn eslint . --fix
+
+# Run unit tests
+yarn test --bail
+
+# Run build
+yarn build
+
+# Run type checks
+yarn tsc --noEmit
+
+# Security checks
+yarn audit
 
 # Add changes if any
 git add .

@@ -31,8 +31,6 @@
 - `storybook:build` – build production storybook bundle to `storybook-static`
 - `prettier:write` – formats all files with Prettier
 
-
-
 ## Stack Used
 
 `React Query`
@@ -108,4 +106,5 @@ The important folders are located in the `src` directory. These include:
 - `README.md`
 
 ## Contact
+
 For any questions or concerns, please reach out to `joshua@bigmerchant.co`.

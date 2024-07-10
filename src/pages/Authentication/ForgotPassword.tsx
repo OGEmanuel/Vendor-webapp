@@ -1,9 +1,3 @@
-
-export  default function ForgotPassword() {
-    return (
-      <>
-       
-      </>
-    );
-  }
-  
+export default function ForgotPassword() {
+  return <></>;
+}

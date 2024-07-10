@@ -1,9 +1,3 @@
-
-export  default function OrdersManagement() {
-    return (
-      <>
-       
-      </>
-    );
-  }
-  
+export default function OrdersManagement() {
+  return <></>;
+}

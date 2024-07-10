@@ -1,9 +1,3 @@
-
-export  default function PayoutsManagement() {
-    return (
-      <>
-       
-      </>
-    );
-  }
-  
+export default function PayoutsManagement() {
+  return <></>;
+}

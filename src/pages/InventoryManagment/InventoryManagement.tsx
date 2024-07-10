@@ -1,9 +1,3 @@
-
-export  default function InventoryManagement() {
-    return (
-      <>
-       
-      </>
-    );
-  }
-  
+export default function InventoryManagement() {
+  return <></>;
+}

@@ -1,9 +1,3 @@
-
-export  default function AccountActivated() {
-    return (
-      <>
-       
-      </>
-    );
-  }
-  
+export default function AccountActivated() {
+  return <></>;
+}

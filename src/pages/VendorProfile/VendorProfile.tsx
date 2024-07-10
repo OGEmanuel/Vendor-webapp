@@ -1,9 +1,3 @@
-
-export  default function VendorProfile() {
-    return (
-      <>
-       
-      </>
-    );
-  }
-  
+export default function VendorProfile() {
+  return <></>;
+}

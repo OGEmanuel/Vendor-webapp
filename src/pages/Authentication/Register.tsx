@@ -1,9 +1,3 @@
-
-export  default function Register() {
-    return (
-      <>
-       
-      </>
-    );
-  }
-  
+export default function Register() {
+  return <></>;
+}
