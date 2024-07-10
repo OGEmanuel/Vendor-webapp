@@ -29,6 +29,12 @@
       "pre-commit": "run-p lint check-branch-name"
     }
   },
+  "lint-staged":{
+    "*.{js,json,tsx,ts,css,md,html}":[
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@mantine/core": "7.11.1",
     "@mantine/hooks": "7.11.1",
