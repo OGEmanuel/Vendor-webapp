@@ -9,7 +9,7 @@ export class AppOutlet extends React.Component<
 > {
   state = { error: null };
 
-  componentDidCatch(error: any, errorInfo: any) {
+  componentDidCatch(error: any) {
     this.setState({
       error,
     });

@@ -1,10 +1,13 @@
-import { createTheme, defaultVariantColorsResolver, parseThemeColor } from '@mantine/core';
+import { createTheme, defaultVariantColorsResolver } from '@mantine/core';
 
 export const mantineTheme = createTheme({
-  fontFamily: `"Onest", sans-serif`,
-  headings: {},
-  defaultRadius: 'sm',
-  primaryShade: 7,
+  fontFamily: '"Roboto", sans-serif',
+  headings: {
+    fontFamily: 'Gotham',
+  },
+  defaultRadius: 'md',
+  primaryShade: 9,
+  primaryColor: 'orange',
   black: 'black',
   colors: {},
   components: {
@@ -22,10 +25,6 @@ export const mantineTheme = createTheme({
   },
   variantColorResolver: (input) => {
     const defaultResolvedColors = defaultVariantColorsResolver(input);
-    const parsedColor = parseThemeColor({
-      color: input.color || input.theme.primaryColor,
-      theme: input.theme,
-    });
     // Add new variants support
     if (input.variant === 'action-btn') {
       return {

@@ -19,10 +19,6 @@
     "prepare": "yarn husky init",
     "check-branch-name": "chmod 755 ./hooks/check_branch_naming.sh && sh ./hooks/check_branch_naming.sh"
   },
-  "validate-branch-name": {
-    "pattern": "^(master|main|staging){1}$|^(c|fix|hotfix|refactor|docs|chore|test|style|perf|feat)/.+$",
-    "errorMsg": "Your branch name is in the wrong format"
-  },
   "dependencies": {
     "@mantine/core": "7.11.1",
     "@mantine/hooks": "7.11.1",
@@ -31,6 +27,7 @@
     "@mantine/nprogress": "^7.11.1",
     "@tanstack/react-query": "^5.50.1",
     "axios": "^1.7.2",
+    "hugeicons-react": "^0.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1"
@@ -75,6 +72,7 @@
     "stylelint-config-standard-scss": "^13.1.0",
     "typescript": "^5.5.2",
     "vite": "^5.3.1",
+    "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^1.6.0"
   },
