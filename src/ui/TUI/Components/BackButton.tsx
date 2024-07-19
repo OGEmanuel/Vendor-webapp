@@ -1,4 +1,4 @@
-import { ActionIcon, Avatar } from '@mantine/core';
+import { Avatar } from '@mantine/core';
 
 import { ArrowLeft02Icon } from 'hugeicons-react';
 import { useNavigate } from 'react-router-dom';
@@ -8,11 +8,11 @@ export function TUIBackButtonActionIcon({ onClick }: { onClick?: () => void }) {
 
   return (
     <Avatar
-      radius={'xl'}
-      size={'md'}
+      radius="xl"
+      size="md"
       onClick={
         onClick ??
-        function () {
+        function back() {
           navigate(-1);
         }
       }

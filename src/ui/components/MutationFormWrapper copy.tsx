@@ -10,9 +10,9 @@ import {
   Text,
   useMantineTheme,
 } from '@mantine/core';
-import ErrorIllustration from '@/ui/big-print-ui/molecules/empty-states/ThemeAccentIllustrationtypeMessageerror.svg';
-import SuccessIllustration from '@/ui/big-print-ui/molecules/empty-states/ThemeColorfulIllustrationtypeSuccessfulillustration.svg';
 import { UseMutationResult } from '@tanstack/react-query';
+import ErrorIllustration from '@/ui/big-print-ui/molecules/empty-states/ThemeAccentIllustrationtypeMessageerror.svg';
+
 export default function MutationFormWrapper({
   mutation,
   children,
@@ -26,7 +26,7 @@ export default function MutationFormWrapper({
   const OverlayProcessing = (
     <Center>
       <Center
-        bg={'white'}
+        bg="white"
         p="md"
         style={{
           boxShadow: theme.shadows.sm,
@@ -42,12 +42,12 @@ export default function MutationFormWrapper({
   const OverlayError = (
     <Stack align="center">
       <Center>
-        <img src={ErrorIllustration} width={100} />
+        <img src={ErrorIllustration} width={100} alt="illustration" />
       </Center>
-      <Text ta={'center'} fw="bold">
+      <Text ta="center" fw="bold">
         Error Occured
       </Text>
-      <Text ta={'center'}>
+      <Text ta="center">
         We encountered an error while trying to complete your request, <br />
         can you please try again.
       </Text>
@@ -68,9 +68,9 @@ export default function MutationFormWrapper({
   const OverlaySuccess = (
     <Stack align="center">
       <Center>
-        <img src={SuccessIllustration} width={100} />
+        <img alt="ill" />
       </Center>
-      <Text ta={'center'} fw="bold">
+      <Text ta="center" fw="bold">
         Request completed!!!
       </Text>
       <Group>
@@ -90,7 +90,7 @@ export default function MutationFormWrapper({
       <Box style={{ position: 'relative' }}>
         {mutation?.isIdle == true ? null : (
           <LoadingOverlay
-            visible={true}
+            visible
             loaderProps={{
               children:
                 mutation?.status == 'success'

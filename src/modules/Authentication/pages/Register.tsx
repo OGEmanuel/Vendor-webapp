@@ -1,4 +1,3 @@
-import { TUIBackButtonActionIcon } from '@/ui/TUI/Components/BackButton';
 import {
   Container,
   Stack,
@@ -7,7 +6,6 @@ import {
   TextInput,
   PasswordInput,
   Button,
-  Checkbox,
   Text,
   Grid,
   Select,
@@ -18,6 +16,7 @@ import {
 } from '@mantine/core';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { TUIBackButtonActionIcon } from '@/ui/TUI/Components/BackButton';
 import VendorSuccessIll from '@/ui/assets/illustrations/VendorSubmissionSuccessIll.svg?react';
 
 export default function Register() {
@@ -30,7 +29,7 @@ export default function Register() {
         <Title order={3}>Get started</Title>
         <Group>
           <Text>Already have an account? </Text>
-          <Link to={'/login'}>
+          <Link to="/login">
             {' '}
             <Text>Sign in </Text>
           </Link>
@@ -93,19 +92,19 @@ export default function Register() {
   );
 
   const SuccessScreen = (
-    <Container size={'xs'} flex={1}>
-      <Stack h={'100%'} justify="center">
+    <Container size="xs" flex={1}>
+      <Stack h="100%" justify="center">
         <Center>
           <VendorSuccessIll />
         </Center>
         <Box>
-          <Title ta={'center'}>Thank you for your submission</Title>
-          <Text ta={'center'}>
-            Our team is verifying your details, and we'll notify you once it's approve. Thank you
+          <Title ta="center">Thank you for your submission</Title>
+          <Text ta="center">
+            Our team is verifying your details, and we will notify you once it is approve. Thank you
             for your patience
           </Text>
         </Box>
-        <Link to={'/login'} style={{ textTransform: 'none', textDecoration: 'none' }}>
+        <Link to="/login" style={{ textTransform: 'none', textDecoration: 'none' }}>
           <Button variant="default" fullWidth size="lg">
             Sign in
           </Button>
@@ -114,9 +113,12 @@ export default function Register() {
     </Container>
   );
 
+  if (step == 3) {
+    return SuccessScreen;
+  }
   return (
     <>
-      <Container size={'md'} w={'100%'}>
+      <Container size="md" w="100%">
         <Grid>
           <Grid.Col span={{ md: 5 }}>
             <Title>

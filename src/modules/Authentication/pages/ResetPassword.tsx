@@ -1,9 +1,7 @@
 import {
   Box,
   Button,
-  Checkbox,
   Container,
-  Group,
   PasswordInput,
   Stack,
   Text,
@@ -11,7 +9,7 @@ import {
   Title,
 } from '@mantine/core';
 import { useEffect } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export default function ResetPassword() {
   const [searchParams] = useSearchParams();
@@ -28,7 +26,7 @@ export default function ResetPassword() {
   return (
     <>
       <Stack flex={1} justify="center" align="center">
-        <Container size={'xs'} w={'100%'} style={{ maxWidth: '350px' }}>
+        <Container size="xs" w="100%" style={{ maxWidth: '350px' }}>
           <Stack>
             <Box>
               <Title order={3}>Create new password</Title>

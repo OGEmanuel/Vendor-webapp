@@ -1,0 +1,14 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "never",
+    "source.removeUnused.ts": "always",
+    "source.fixAll.ts": "always",
+    "source.addMissingImports.ts": "explicit",
+    "source.sortImports": "never"
+  },
+  "eslint.validate": ["javascript"],
+  "eslint.lintTask.enable": true,
+  "eslint.run": "onSave",
+  "eslint.format.enable": true
+}

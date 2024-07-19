@@ -1,5 +1,5 @@
-import useLocalStorage from '@/hooks/useLocalStorage';
 import React, { createContext, useContext } from 'react';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 type Props = {
   authToken: string;

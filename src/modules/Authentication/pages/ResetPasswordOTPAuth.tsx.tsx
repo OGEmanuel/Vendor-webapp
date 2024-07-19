@@ -1,23 +1,12 @@
-import { TUIBackButtonActionIcon } from '@/ui/TUI/Components/BackButton';
-import {
-  Container,
-  Stack,
-  Box,
-  Title,
-  TextInput,
-  Group,
-  Button,
-  Text,
-  PinInput,
-  Center,
-} from '@mantine/core';
+import { Container, Stack, Box, Title, Group, Button, Text, PinInput } from '@mantine/core';
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { TUIBackButtonActionIcon } from '@/ui/TUI/Components/BackButton';
 
 export default function ResetPasswordOTPAuth() {
   const [search] = useSearchParams();
   const navigate = useNavigate();
-  const phoneOTP = search.get('phoneOtp');
+  // const phoneOTP = search.get('phoneOtp');
   useEffect(() => {
     if (search.get('phoneOTP')) {
       navigate(-1);
@@ -26,7 +15,7 @@ export default function ResetPasswordOTPAuth() {
 
   return (
     <Stack flex={1} justify="center" align="center">
-      <Container size={'xs'} w={'100%'} style={{ maxWidth: '320px' }}>
+      <Container size="xs" w="100%" style={{ maxWidth: '320px' }}>
         <Stack>
           <Box>
             <Title order={3}>ENTER OTP Code</Title>

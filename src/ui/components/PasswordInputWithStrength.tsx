@@ -1,6 +1,7 @@
 import { Box, Progress, PasswordInput, Group, Text, Center } from '@mantine/core';
 import { useInputState } from '@mantine/hooks';
 import { Cancel02Icon, CheckmarkBadge02Icon } from 'hugeicons-react';
+
 function PasswordRequirement({ meets, label }: { meets: boolean; label: string }) {
   return (
     <Text component="div" c={meets ? 'teal' : 'red'} mt={5} size="sm">
