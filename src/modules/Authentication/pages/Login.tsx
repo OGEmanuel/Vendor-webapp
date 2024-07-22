@@ -1,3 +1,4 @@
+import { SigninDTO } from '@/sdk/auth';
 import {
   Box,
   Button,
@@ -9,9 +10,24 @@ import {
   TextInput,
   Title,
 } from '@mantine/core';
+import { useForm } from '@mantine/form';
 import { Link } from 'react-router-dom';
+import useLoginMutation from '../hooks/useLoginMutation';
 
 export default function Login() {
+  const { mutate } = useLoginMutation();
+  const form = useForm<SigninDTO>({
+    mode: 'uncontrolled',
+    //@ts-ignore
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+    },
+  });
+
   return (
     <Stack flex={1} justify="center" align="center">
       <Container size="xs" w="100%" style={{ maxWidth: '400px' }}>
@@ -25,16 +41,22 @@ export default function Login() {
               </Link>
             </Group>
           </Box>
-          <form>
+          <form
+            onSubmit={form.onSubmit((values) => {
+              mutate(values as unknown as SigninDTO);
+            })}
+          >
             <Stack>
-              <TextInput label="Email Address" />
-              <PasswordInput label="Password" />
+              <TextInput label="Email Address" {...form.getInputProps('email')} />
+              <PasswordInput label="Password" {...form.getInputProps('password')} />
               <Group justify="right">
                 <Link to="/forgot-password">
                   <Text ta="right">Forgot Password?</Text>
                 </Link>
               </Group>
-              <Button fullWidth>Continue</Button>
+              <Button fullWidth type="submit">
+                Continue
+              </Button>
             </Stack>
           </form>
         </Stack>

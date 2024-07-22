@@ -14,7 +14,6 @@ export class AppOutlet extends React.Component<
       error,
     });
   }
-
   render() {
     return (
       <Suspense fallback={<LoadingOverlay visible />}>

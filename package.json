@@ -17,10 +17,12 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "prepare": "yarn husky init",
-    "check-branch-name": "chmod 755 ./hooks/check_branch_naming.sh && sh ./hooks/check_branch_naming.sh"
+    "check-branch-name": "chmod 755 ./hooks/check_branch_naming.sh && sh ./hooks/check_branch_naming.sh",
+    "gen-auth-catalog": "openapi-generator-cli generate -i https://staging-api.tukshopp.ng/docs/auth-service-json -g typescript-axios -o src/sdk/auth"
   },
   "dependencies": {
     "@mantine/core": "7.11.1",
+    "@mantine/form": "^7.11.2",
     "@mantine/hooks": "7.11.1",
     "@mantine/modals": "^7.11.1",
     "@mantine/notifications": "^7.11.1",

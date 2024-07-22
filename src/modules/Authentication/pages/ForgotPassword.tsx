@@ -1,9 +1,8 @@
 import { Box, Button, Container, Group, Stack, Text, TextInput, Title } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
 import { TUIBackButtonActionIcon } from '@/ui/TUI/Components/BackButton';
+import { PasswordApi } from '@/sdk/auth';
 
 export default function ForgotPassword() {
-  const navigate = useNavigate();
   return (
     <Stack flex={1} justify="center" align="center">
       <Container size="xs" w="100%" style={{ maxWidth: '350px' }}>
@@ -20,7 +19,14 @@ export default function ForgotPassword() {
                 <Button
                   flex={1}
                   onClick={() => {
-                    navigate('/reset-password-otp-auth');
+                    // navigate('/reset-password-otp-auth');
+                    console.log('should send na');
+                    new PasswordApi()
+                      .authControllerForgotPassword({ email: 'joshuanwafor01@gmail.com' })
+                      .then((res) => {
+                        console.log(res.data, ' passed');
+                      })
+                      .catch(console.log);
                   }}
                 >
                   Continue
