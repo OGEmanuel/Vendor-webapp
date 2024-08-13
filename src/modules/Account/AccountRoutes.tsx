@@ -12,6 +12,7 @@ import Settings from './pages/Settings';
 import ChangePassword from './pages/ChangePassword';
 import TUIAccountShell from '@/ui/TUI/Templates/DashboardShell/TUIAccountShell';
 import { useMediaQuery } from '@mantine/hooks';
+import React from 'react';
 
 const moduleSubPages = [
   {
@@ -32,12 +33,6 @@ const moduleSubPages = [
     children: <ChangePassword />,
     icon: <LockerIcon size={20} />,
   },
-  {
-    label: 'Customer Support',
-    id: 'customer-support',
-    children: <ChangePassword />,
-    icon: <CustomerSupportIcon size={20} />,
-  },
 ];
 
 export default function AccountRoutes() {
@@ -45,7 +40,7 @@ export default function AccountRoutes() {
   const matches = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
   return (
     <TUIAccountShell>
-      <Container my={'xl'}>
+      <Container my={'xl'} px={0}>
         <FlexTabs>
           <Tabs.List>
             {moduleSubPages.map((_) => {
@@ -55,10 +50,21 @@ export default function AccountRoutes() {
                 </Tabs.Tab>
               );
             })}
+
             {matches && (
-              <Tabs.Tab value="log-out " leftSection={<Logout01Icon color="red" />} color="red">
-                <Text c={'red'}>Log Out</Text>
-              </Tabs.Tab>
+              <React.Fragment>
+                <Tabs.Tab
+                  value="support "
+                  leftSection={<CustomerSupportIcon color="red" />}
+                  color="red"
+                >
+                  <Text c={'red'}>Customer Support</Text>
+                </Tabs.Tab>
+
+                <Tabs.Tab value="log-out " leftSection={<Logout01Icon color="red" />} color="red">
+                  <Text c={'red'}>Log Out</Text>
+                </Tabs.Tab>
+              </React.Fragment>
             )}
           </Tabs.List>
           {moduleSubPages.map((_, idx) => {

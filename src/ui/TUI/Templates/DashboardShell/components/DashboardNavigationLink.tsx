@@ -20,7 +20,7 @@ export default function DashboardNavigationLink({
         return (
           <Paper
             bg={props.isActive ? theme.colors.gray[1] : undefined}
-            radius={'sm'}
+            radius={'lg'}
             py="xs"
             px={'xs'}
           >

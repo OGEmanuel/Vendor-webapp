@@ -11,8 +11,6 @@ import {
 export default function ManageMembers() {
   return (
     <TUIPageShell title="Members">
-      <div>Members</div>
-
       <FlexDataTable
         columns={[
           {
@@ -76,7 +74,7 @@ export default function ManageMembers() {
             header: '',
             render: ({}) => {
               return (
-                <Box>
+                <Group justify='flex-end'>
                   <Menu>
                     <Menu.Target>
                       <ActionIcon variant="default">
@@ -89,7 +87,7 @@ export default function ManageMembers() {
                       <Menu.Item leftSection={<UserRemove01Icon />}>Remove member</Menu.Item>
                     </Menu.Dropdown>
                   </Menu>
-                </Box>
+                </Group>
               );
             },
             accessor: '',

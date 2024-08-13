@@ -4,11 +4,10 @@ import { ArrowRight01Icon } from 'hugeicons-react';
 
 export default function VendorSwitcher() {
   const { summary } = useActiveVendor();
-  console.log(summary, 'vendor dey jare');
   return (
     <Box>
       <Group p={'sm'}>
-        <Avatar size={'md'} color={summary?.logo ?? ''}></Avatar>
+        <Avatar size={'md'} color={summary?.logo ?? ''} src={summary?.logo}></Avatar>
         <Text flex={1}>{summary?.vendorName}</Text>
         <ArrowRight01Icon />
       </Group>

@@ -17,7 +17,7 @@
         }
     }
 
-    @media (max-width: 200px) {
+    @media (max-width: 64em) {
         border-radius: 0px;
         background-color: transparent;
         &[data-active] {

@@ -1,4 +1,6 @@
-import { UpdateAccountDTO } from '@/sdk/auth';
+import { useProfileMutation } from '@/hooks/mutations/useProfileMutation';
+import useLoggedInUser from '@/hooks/useLoggedInUser';
+import { AccountPublicDto, UpdateAccountDTO } from '@/sdk/auth';
 import BoxedImageDropzoneBox from '@/ui/TUI/Components/BoxImageDropzoneBox';
 import ImageUploadButton from '@/ui/TUI/Components/ImageUploadButton';
 import PhoneInput from '@/ui/TUI/Components/PhoneInput';
@@ -7,32 +9,47 @@ import { Box, Button, Divider, Grid, GridCol, Group, Text, TextInput, Title } fr
 import { useForm } from '@mantine/form';
 
 export default function UpdateProfile() {
+  const { profile } = useLoggedInUser();
+
   return (
     <SectionCard caption="Update your personal details" title="Profile">
-      <Form />
+      {profile && <Form user={profile} />}
     </SectionCard>
   );
 }
 
-function Form() {
+function Form({ user }: { user: AccountPublicDto }) {
+  const { mutate , isPending} = useProfileMutation();
   const form = useForm<UpdateAccountDTO>({
     initialValues: {
-      profilePhoto: '',
-      bio: '',
-      firstName: '',
-      lastName: '',
+      ...user,
     },
   });
 
+  console.log(user);
   return (
-    <form>
+    <form
+      onSubmit={form.onSubmit((values) => {
+        mutate(values, { onSuccess: () => {} });
+      })}
+    >
       <Grid>
         <GridCol>
           <Group>
             <Box w={100}>
-            <BoxedImageDropzoneBox onUploaded={() => {}} />
+              <BoxedImageDropzoneBox
+                onUploaded={(url) => {
+                  form.setFieldValue('profilePhoto', url);
+                }}
+                url={form.values.profilePhoto}
+              />
             </Box>
-            <ImageUploadButton label="Change photo" onUploaded={() => {}} />
+            <ImageUploadButton
+              label="Change photo"
+              onUploaded={(url) => {
+                form.setFieldValue('profilePhoto', url);
+              }}
+            />
           </Group>
         </GridCol>
         <Grid.Col span={{ md: 6 }}>
@@ -42,13 +59,15 @@ function Form() {
           <TextInput label="Last name" {...form.getInputProps('lastName')} />
         </Grid.Col>
         <Grid.Col span={{ md: 12 }}>
-          <TextInput label="Email" disabled />
+          <TextInput label="Email" disabled value={user.email} />
         </Grid.Col>
         <Grid.Col span={{ md: 12 }}>
-          <PhoneInput label="Phone" disabled />
+          <PhoneInput label="Phone" disabled value={user.phone} />
         </Grid.Col>
         <Grid.Col span={{ md: 12 }}>
-          <Button variant="default">Save Changes</Button>
+          <Button variant="default" type="submit" loading={isPending}>
+            Save Changes
+          </Button>
         </Grid.Col>
         <Grid.Col span={{ md: 12 }}>
           <Divider />

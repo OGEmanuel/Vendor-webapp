@@ -6,7 +6,7 @@ import classes from './styles.module.css';
 
 export default function FlexTabs({ ...props }: TabsProps) {
   const mantine = useMantineTheme();
-  const matches = useMediaQuery(`(min-width: ${mantine.breakpoints.sm})`);
+  const matches = useMediaQuery(`(min-width: ${mantine.breakpoints.md})`);
   
   const navigate = useNavigate();
   let [searchParams] = useSearchParams();
