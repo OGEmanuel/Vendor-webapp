@@ -1,0 +1,28 @@
+.tab {
+
+
+    border: none;
+    border-radius: 4px;
+    color: var(--mantine-color-dark);
+
+    &[data-active] {
+        z-index: 1;
+        background-color: var(--mantine-color-gray-3);
+        border-color: var(--mantine-color-blue-filled);
+        color: var(--mantine-color-dark);
+        font-weight: bold;
+
+        @mixin hover {
+            background-color: var(--mantine-color-gray-4);
+        }
+    }
+
+    @media (max-width: 200px) {
+        border-radius: 0px;
+        background-color: transparent;
+        &[data-active] {
+            background-color: transparent !important;
+            border-bottom: 1px solid black;
+        }
+    }
+}

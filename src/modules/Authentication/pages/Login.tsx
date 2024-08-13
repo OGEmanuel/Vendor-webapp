@@ -15,16 +15,15 @@ import { Link } from 'react-router-dom';
 import useLoginMutation from '../hooks/useLoginMutation';
 
 export default function Login() {
-  const { mutate } = useLoginMutation();
+  const { mutate, isPending } = useLoginMutation();
   const form = useForm<SigninDTO>({
     mode: 'uncontrolled',
-    //@ts-ignore
     initialValues: {
       email: '',
       password: '',
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      email: (value) => (/^\S+@\S+$/.test(value ?? '') ? null : 'Invalid email'),
     },
   });
 
@@ -54,7 +53,7 @@ export default function Login() {
                   <Text ta="right">Forgot Password?</Text>
                 </Link>
               </Group>
-              <Button fullWidth type="submit">
+              <Button fullWidth type="submit" loading={isPending}>
                 Continue
               </Button>
             </Stack>

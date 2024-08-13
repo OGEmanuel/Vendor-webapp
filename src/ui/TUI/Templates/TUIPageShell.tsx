@@ -1,4 +1,4 @@
-import { Box, Divider, Group, Stack, Text } from '@mantine/core';
+import { Box, Container, Divider, Group, Title } from '@mantine/core';
 
 export default function TUIPageShell({
   children,
@@ -7,19 +7,24 @@ export default function TUIPageShell({
 }: {
   children: React.ReactNode;
   title: string;
-  right: React.ReactNode;
+  right?: React.ReactNode;
 }) {
   return (
-    <Stack>
-      <Group justify="space-between" align="center">
-        <Box flex={1} p="md">
-          <Text size="xl">{title}</Text>
-          <Text>caption goes here</Text>
-        </Box>
-        <Box>{right}</Box>
-      </Group>
+    <Box>
+      <Box bg="white" p={'md'}>
+        <Container fluid size={'xl'} px="0">
+          <Group>
+            <Box flex={1}>
+              <Title order={3}>{title}</Title>
+            </Box>
+            <Box>{right}</Box>
+          </Group>
+        </Container>
+      </Box>
       <Divider />
-      {children}
-    </Stack>
+      <Container fluid size={'xl'}  p={'md'}>
+        {children}
+      </Container>
+    </Box>
   );
 }

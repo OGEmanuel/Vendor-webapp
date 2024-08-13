@@ -1,10 +1,10 @@
 import TUIPageShell from '@/ui/TUI/Templates/TUIPageShell';
+import { Text } from '@mantine/core';
 
 export default function OrdersManagement() {
   return (
-    <TUIPageShell title="Page title" right={<div>right</div>}>
-      {' '}
-      <h1>Dashboard goes here</h1>
+    <TUIPageShell title="Orders">
+      <Text>Dashboard goes here</Text>
     </TUIPageShell>
   );
 }

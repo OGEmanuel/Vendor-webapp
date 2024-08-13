@@ -1,17 +1,47 @@
+import { MemberCredential } from '@/sdk/vendor';
+import { useLocalStorage } from '@mantine/hooks';
 import React, { createContext, useContext } from 'react';
-import useLocalStorage from '@/hooks/useLocalStorage';
 
 type Props = {
   authToken: string;
   setAuthToken: (str: string) => void;
+  activeVendorCredential: MemberCredential;
+  setActiveVendorCredentials: (activeVendorCredential: MemberCredential) => void;
 };
 
-const TUIAppContext = createContext<Props>({ authToken: '', setAuthToken: () => '' });
+const TUIAppContext = createContext<Props>({
+  authToken: '',
+  setAuthToken: () => '',
+  activeVendorCredential: {} as MemberCredential,
+  setActiveVendorCredentials: () => {},
+});
 
 export const TUIAppContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [authToken, setAuthToken] = useLocalStorage('authToken', undefined, false);
+  const [authToken, setAuthToken] = useLocalStorage<string>({
+    key: 'authToken',
+  });
+
+  const [activeVendorCredential, setActiveVendorCredentials] = useLocalStorage<MemberCredential>({
+    key: 'vendorCredentials',
+    defaultValue: undefined,
+    deserialize(value) {
+      return JSON.parse(value ?? '');
+    },
+  });
+
   return (
-    <TUIAppContext.Provider value={{ authToken, setAuthToken }}>{children}</TUIAppContext.Provider>
+    <TUIAppContext.Provider
+      value={{
+        authToken,
+        setAuthToken,
+        activeVendorCredential: activeVendorCredential,
+        setActiveVendorCredentials: (credentials: MemberCredential) => {
+          setActiveVendorCredentials(credentials);
+        },
+      }}
+    >
+      {children}
+    </TUIAppContext.Provider>
   );
 };
 

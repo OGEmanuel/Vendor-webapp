@@ -3123,6 +3123,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mantine/dates@npm:^7.12.1":
+  version: 7.12.1
+  resolution: "@mantine/dates@npm:7.12.1"
+  dependencies:
+    clsx: "npm:^2.1.1"
+  peerDependencies:
+    "@mantine/core": 7.12.1
+    "@mantine/hooks": 7.12.1
+    dayjs: ">=1.0.0"
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  checksum: 10c0/e450ea198f2c4978e0dd15a89fdabb369bc6c955b9d144f5eccda4e11e8a8c453fa3b62bcc80ffeda0af1a74d7c4e612b7f6a5fd8d21d67cb9de5630feb54a5c
+  languageName: node
+  linkType: hard
+
+"@mantine/dropzone@npm:^7.12.1":
+  version: 7.12.1
+  resolution: "@mantine/dropzone@npm:7.12.1"
+  dependencies:
+    react-dropzone-esm: "npm:15.0.1"
+  peerDependencies:
+    "@mantine/core": 7.12.1
+    "@mantine/hooks": 7.12.1
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  checksum: 10c0/196e457b44b19bdd4aacd9246f0b156b3d56b6d93959f3a4d49dfdee39c4a1c03b63bbba8c5d4d2f99188fc4e74b598222c46b12225ed6dd037bb606803bcf97
+  languageName: node
+  linkType: hard
+
 "@mantine/form@npm:^7.11.2":
   version: 7.11.2
   resolution: "@mantine/form@npm:7.11.2"
@@ -7028,6 +7057,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dayjs@npm:^1.11.12":
+  version: 1.11.12
+  resolution: "dayjs@npm:1.11.12"
+  checksum: 10c0/9673d37f3f9ad8a91caaeae9b3fea9a0010c81c7f58599fb9d860bc3359b86632fbff8eb7dddc86c2acaab01c5e6860bc672952f17b58c9286140c52b077c8e4
+  languageName: node
+  linkType: hard
+
 "debug@npm:2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
@@ -10579,6 +10615,8 @@ __metadata:
   resolution: "mantine-vite-template@workspace:."
   dependencies:
     "@mantine/core": "npm:7.11.1"
+    "@mantine/dates": "npm:^7.12.1"
+    "@mantine/dropzone": "npm:^7.12.1"
     "@mantine/form": "npm:^7.11.2"
     "@mantine/hooks": "npm:7.11.1"
     "@mantine/modals": "npm:^7.11.1"
@@ -10602,6 +10640,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^7.13.1"
     "@vitejs/plugin-react": "npm:^4.3.1"
     axios: "npm:^1.7.2"
+    dayjs: "npm:^1.11.12"
     eslint: "npm:^8.57.0"
     eslint-config-airbnb: "npm:19.0.4"
     eslint-config-airbnb-typescript: "npm:^18.0.0"
@@ -12095,6 +12134,17 @@ __metadata:
   peerDependencies:
     react: ^18.3.1
   checksum: 10c0/a752496c1941f958f2e8ac56239172296fcddce1365ce45222d04a1947e0cc5547df3e8447f855a81d6d39f008d7c32eab43db3712077f09e3f67c4874973e85
+  languageName: node
+  linkType: hard
+
+"react-dropzone-esm@npm:15.0.1":
+  version: 15.0.1
+  resolution: "react-dropzone-esm@npm:15.0.1"
+  dependencies:
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    react: ">= 16.8 || 18.0.0"
+  checksum: 10c0/4bd7054a78a9d8b98d13f0abfbdec334e647c681ccb62c5c38fce72e1bace4cdb7d5eb22675ab2ce63f6cca11ec40c0e2081a28a725a38f331cf930abb170e7d
   languageName: node
   linkType: hard
 
