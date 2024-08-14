@@ -13,7 +13,7 @@ export default function FlexTabs({ ...props }: TabsProps) {
 
   return (
     <Tabs
-      pl={'md'}
+    
       classNames={classes}
       orientation={matches == true ? 'vertical' : 'horizontal'}
       color="white"

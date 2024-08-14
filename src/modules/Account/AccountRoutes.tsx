@@ -1,6 +1,6 @@
 import UpdateProfile from './pages/UpdateProfile';
 import FlexTabs from '@/ui/TUI/Components/FlexTabs/FlexTabs';
-import { Container, Tabs, Text, useMantineTheme } from '@mantine/core';
+import { Container, Space, Tabs, Text, useMantineTheme } from '@mantine/core';
 import {
   CustomerSupportIcon,
   LockerIcon,
@@ -13,6 +13,8 @@ import ChangePassword from './pages/ChangePassword';
 import TUIAccountShell from '@/ui/TUI/Templates/DashboardShell/TUIAccountShell';
 import { useMediaQuery } from '@mantine/hooks';
 import React from 'react';
+import { TUIBackButton } from '@/ui/TUI/Components/BackButton';
+import { useNavigate } from 'react-router-dom';
 
 const moduleSubPages = [
   {
@@ -38,10 +40,15 @@ const moduleSubPages = [
 export default function AccountRoutes() {
   const theme = useMantineTheme();
   const matches = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
+  const navigate = useNavigate()
   return (
     <TUIAccountShell>
       <Container my={'xl'} px={0}>
-        <FlexTabs>
+        <TUIBackButton onClick={()=>{
+          navigate(-1)
+        }}/>
+        <Space h={12}/>
+        <FlexTabs defaultValue={"profile"}> 
           <Tabs.List>
             {moduleSubPages.map((_) => {
               return (

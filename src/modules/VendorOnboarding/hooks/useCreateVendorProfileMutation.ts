@@ -17,7 +17,6 @@ export default function useCreateVendorProfileMutation() {
       //@ts-ignore
       payload.accountId = id;
       const data = await vendorApi.vendorAdminControllerCreateVendorProfile(payload);
-      await init();
       return data;
     },
     onError: (err) => {
@@ -26,6 +25,7 @@ export default function useCreateVendorProfileMutation() {
     },
     onSuccess: async () => {
       console.log('logged in user');
+      await init();
       next();
       nprogress.reset();
     },

@@ -1,14 +1,15 @@
 import { Box, LoadingOverlay } from '@mantine/core';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Dashboard from '@/modules/Dashboard/pages/DashboardIndex';
 import TUIDashboardhell from '@/ui/TUI/Templates/DashboardShell/TUIDashboardShell';
-import VendorOnboardingRoutes from '@/modules/VendorOnboarding/VendorOnboardingRoutes';
 import useVendorInit from '@/hooks/useVendorInit.ts';
-import AccountRoutes from '@/modules/Account/AccountRoutes';
-import OrdersManagement from '@/modules/OrdersMangement/OrdersManagement';
-import InventoryManagement from '@/modules/InventoryManagment/InventoryManagement';
-import ManagementRoutes from '@/modules/Management/ManagementRoutes';
+// Lazy load the components
+const Dashboard = lazy(() => import('@/modules/Dashboard/pages/DashboardIndex'));
+const VendorOnboardingRoutes = lazy(() => import('@/modules/VendorOnboarding/VendorOnboardingRoutes'));
+const AccountRoutes = lazy(() => import('@/modules/Account/AccountRoutes'));
+const OrdersManagement = lazy(() => import('@/modules/OrdersMangement/OrdersManagement'));
+const InventoryManagement = lazy(() => import('@/modules/InventoryManagment/InventoryManagement'));
+const ManagementRoutes = lazy(() => import('@/modules/Management/ManagementRoutes'));
 
 export const AppRoutes = () => {
   const { init } = useVendorInit();

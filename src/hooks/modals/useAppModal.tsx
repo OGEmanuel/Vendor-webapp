@@ -21,7 +21,7 @@ export default function useAppModal() {
       children: (
         <Box>
           <Group justify="space-between">
-            {title && <Title>{title}</Title>}
+            <Box>{title && <Title>{title}</Title>}</Box>
             <Avatar
               onClick={() => {
                 modals.close(id);
