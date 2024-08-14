@@ -7,6 +7,7 @@ import Card from '@/ui/TUI/Components/Card';
 import useUpdateOutletMutation from '../hooks/useUpdateOutletMutation';
 import { showNotification } from '@mantine/notifications';
 import { ReactNode } from 'react';
+import { DefaultDaysofWork } from '@/utils';
 
 export default function UpdateOutletConfigForm({ initial }: { initial: Outlet }) {
   const { isPending, mutate } = useUpdateOutletMutation();
@@ -19,6 +20,11 @@ export default function UpdateOutletConfigForm({ initial }: { initial: Outlet })
   const form = useForm<UpdateOutletDTO>({
     initialValues: {
       ...initial,
+      config: {
+        ...initial.config,
+        daysOfWork: initial.config?.daysOfWork?? DefaultDaysofWork,
+        minimumDeliveryWindow: initial.config?.minimumDeliveryWindow??0
+      }
     },
   });
 

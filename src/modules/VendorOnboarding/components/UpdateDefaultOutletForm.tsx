@@ -48,10 +48,9 @@ export default function UpdateDefaultOutletForm({ initial }: { initial: Outlet }
         notes: '',
       },
       config: {
-        ...(initial.config ?? {
-          daysOfWork: DefaultDaysofWork,
-          minimumDeliveryWindow: 0,
-        }),
+        ...initial.config,
+        daysOfWork: initial.config?.daysOfWork ?? DefaultDaysofWork,
+        minimumDeliveryWindow: initial.config?.minimumDeliveryWindow ?? 0,
       },
     },
   });
