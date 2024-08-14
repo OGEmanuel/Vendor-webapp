@@ -35,7 +35,7 @@ export default function Login() {
             <Title order={3}>Welcome back</Title>
             <Group gap="xs">
               <Text>Don&apos;t have an account? </Text>
-              <Link to="/register">
+              <Link to="/register" style={{}}>
                 <Text>Sign Up</Text>
               </Link>
             </Group>

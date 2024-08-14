@@ -10,11 +10,13 @@ appAxiosInstance.interceptors.response.use(
     // Do something with response data
     response,
   (error: AxiosError) => {
-    console.error('An error occurred:', error);
+    const data = error.response?.data as any;
+
     if (error.response) {
+      console.error('An error occurred:', data);
       showNotification({
-        //@ts-expect-error ignore for now
-        message: JSON.stringify(error.response.data?.message ?? 'Something went wrong'),
+        message: data.message,
+        title: data.error
       });
     } else if (error.request) {
     } else {

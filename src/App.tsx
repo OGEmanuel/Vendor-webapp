@@ -17,11 +17,11 @@ import { BrowserRouter } from 'react-router-dom';
 export default function App() {
   return (
     <MantineProvider theme={mantineTheme}>
+      <Notifications />
       <BrowserRouter basename="/">
         <QueryClientProvider client={queryClient}>
           <TUIAppContextProvider>
             <ModalsProvider>
-              <Notifications />
               <NavigationProgress />
               <Router />
             </ModalsProvider>

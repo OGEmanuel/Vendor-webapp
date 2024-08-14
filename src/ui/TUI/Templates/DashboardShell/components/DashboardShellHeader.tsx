@@ -21,7 +21,7 @@ import { useDisclosure } from '@mantine/hooks';
 import TUIDashboardSideNavigation from './TUIDashboardSideNavigation';
 
 export default function DashboardShellHeader() {
-  const { firstName, lastName, profile } = useLoggedInUser();
+  const { firstName, lastName, profile, logout} = useLoggedInUser();
   const navigate = useNavigate();
   return (
     <AppShell.Header>
@@ -78,7 +78,7 @@ export default function DashboardShellHeader() {
                   >
                     Settings
                   </Menu.Item>
-                  <Menu.Item leftSection={<Logout01Icon size={18} />} color="red">
+                  <Menu.Item leftSection={<Logout01Icon size={18} />} color="red" onClick={logout}>
                     Log Out
                   </Menu.Item>
                 </Menu.Dropdown>
