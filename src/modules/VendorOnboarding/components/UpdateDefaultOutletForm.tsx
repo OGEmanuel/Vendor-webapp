@@ -19,6 +19,7 @@ import { TUIBackButtonActionIcon } from '@/ui/TUI/Components/BackButton';
 import { useQuery } from '@tanstack/react-query';
 import { dataTypesApi } from '@/config/sdk';
 import useUpdateDefaultOutletMutation from '../hooks/useUpdateOutletMutation';
+import { DefaultDaysofWork } from '@/utils';
 
 type Days = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
 export default function UpdateDefaultOutletForm({ initial }: { initial: Outlet }) {
@@ -39,52 +40,18 @@ export default function UpdateDefaultOutletForm({ initial }: { initial: Outlet }
         address: '',
         city: '',
         country: '',
-        countryCode: '',
+        countryCode: 'NG',
         latitude: 0,
         longitude: 0,
         state: '',
         stateCode: '',
         notes: '',
       },
-      config: initial.config ?? {
-        daysOfWork: {
-          friday: {
-            open: '00:00',
-            alwaysOpen: true,
-            close: '00:00',
-          },
-          monday: {
-            open: '00:00',
-            alwaysOpen: true,
-            close: '00:00',
-          },
-          saturday: {
-            open: '00:00',
-            alwaysOpen: true,
-            close: '00:00',
-          },
-          sunday: {
-            open: '00:00',
-            alwaysOpen: true,
-            close: '00:00',
-          },
-          thursday: {
-            open: '00:00',
-            alwaysOpen: true,
-            close: '00:00',
-          },
-          tuesday: {
-            open: '00:00',
-            alwaysOpen: true,
-            close: '00:00',
-          },
-          wednesday: {
-            open: '00:00',
-            alwaysOpen: true,
-            close: '00:00',
-          },
-        },
-        minimumDeliveryWindow: 0,
+      config: {
+        ...(initial.config ?? {
+          daysOfWork: DefaultDaysofWork,
+          minimumDeliveryWindow: 0,
+        }),
       },
     },
   });

@@ -1,6 +1,7 @@
 import { OpeningHours } from '@/sdk/vendor';
-import { Grid, Group, Switch, Text } from '@mantine/core';
+import { Grid, Group, Paper, Switch, Text, useMantineTheme } from '@mantine/core';
 import { TimeInput } from '@mantine/dates';
+import { Moon02Icon } from 'hugeicons-react';
 
 export default function OpeningHoursInput({
   day,
@@ -17,13 +18,15 @@ export default function OpeningHoursInput({
     onChange(_);
   }
 
-  console.log(payload)
+  const theme = useMantineTheme();
+  console.log(payload, "opening hours");
   return (
     <Grid>
       <Grid.Col span={{ base: 5 }}>
         <Group>
           <Switch
             label={''}
+            color="green"
             checked={payload.alwaysOpen}
             size="lg"
             onChange={() => {
@@ -34,30 +37,39 @@ export default function OpeningHoursInput({
         </Group>
       </Grid.Col>
       <Grid.Col span={{ base: 7 }}>
-        <Group>
+        {payload?.alwaysOpen == false ? (
+          <Paper p="xs" bg={theme.colors.gray[0]} withBorder>
+            <Group>
+              <Moon02Icon  color={theme.colors.gray[7]}/>
+              <Text c={theme.colors.gray[7]}>Unavailable</Text>
+            </Group>
+          </Paper>
+        ) : (
           <Group>
-            <Text>From</Text>
-            <TimeInput
-              value={payload.open}
-              onChange={(event) => {
-                let _ = payload;
-                _.open = event.target.value;
-                onChange(_);
-              }}
-            />
+            <Group>
+              <Text>From</Text>
+              <TimeInput
+                value={payload.open}
+                onChange={(event) => {
+                  let _ = payload;
+                  _.open = event.target.value;
+                  onChange(_);
+                }}
+              />
+            </Group>
+            <Group>
+              <Text>To</Text>
+              <TimeInput
+                value={payload.close}
+                onChange={(event) => {
+                  let _ = payload;
+                  _.close = event.target.value;
+                  onChange(_);
+                }}
+              />
+            </Group>
           </Group>
-          <Group>
-            <Text>To</Text>
-            <TimeInput
-              value={payload.close}
-              onChange={(event) => {
-                let _ = payload;
-                _.close = event.target.value;
-                onChange(_);
-              }}
-            />
-          </Group>
-        </Group>
+        )}
       </Grid.Col>
     </Grid>
   );

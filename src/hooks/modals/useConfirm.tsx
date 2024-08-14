@@ -1,8 +1,8 @@
 import { Box, Button, Group, Text, Title } from '@mantine/core';
 import useAppModal from './useAppModal';
 
-import NoticeIll from '@/ui/assets/illustrations/NoticeIll.svg?react';
-import NoticeInfoIll from '@/ui/assets/illustrations/NoticeInfoIll.svg?react';
+import NoticeIll from '@/ui/assets/illustrations/noticeIll.svg?react';
+import NoticeInfoIll from '@/ui/assets/illustrations/noticeInfoIll.svg?react';
 import { modals } from '@mantine/modals';
 
 export default function useConfirm() {

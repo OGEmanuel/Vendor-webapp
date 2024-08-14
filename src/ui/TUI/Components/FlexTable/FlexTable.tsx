@@ -1,17 +1,18 @@
-import { Box, Divider, Grid, Paper, Stack, Table, Text, useMantineTheme } from '@mantine/core';
+import { Box, Grid, Paper, Stack, Table, Text, useMantineTheme } from '@mantine/core';
 import React from 'react';
-import { FlexDataTableColumn, FlexDataTableProps } from './props';
+import { FlexDataTableProps } from './props';
 import { useMediaQuery } from '@mantine/hooks';
 const FlexDataTable: React.FC<FlexDataTableProps> = ({
   columns,
   records,
+  RenderMobile,
   onSelect,
   headerNode,
   ...props
 }) => {
   const theme = useMantineTheme();
   const mantine = useMantineTheme();
-  const matches = useMediaQuery(`(min-width: ${mantine.breakpoints.md})`);
+  const matches = useMediaQuery(`(max-width: ${mantine.breakpoints.md})`);
 
   const rows = records.map((record, idxroot, []) => (
     <Table.Tr key={`${record.id}`}>
@@ -28,39 +29,54 @@ const FlexDataTable: React.FC<FlexDataTableProps> = ({
     </Table.Tr>
   ));
 
+  function RenderTableComp() {
+    return (
+      <Table verticalSpacing={'md'} {...props}>
+        <Table.Thead
+          style={{
+            background: theme.colors.gray[0],
+            borderTop: `1px solid ${theme.colors.gray[1]}`,
+          }}
+        >
+          <Table.Tr>
+            {columns.map((ele, idx) => (
+              <Table.Th
+                key={idx}
+                {...(ele.thProps ?? {})}
+                fw={'500'}
+                c={'dimmed'}
+                tt={'capitalize'}
+              >
+                {typeof ele.header === 'function' ? <ele.header /> : ele.header}
+              </Table.Th>
+            ))}
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>{rows}</Table.Tbody>
+      </Table>
+    );
+  }
+
   return (
     <Paper withBorder>
-      <Stack>
-        <Grid p="xs">
+      <Stack gap={0}>
+        <Grid p="md">
           <Grid.Col span={{ base: 12 }}>{headerNode}</Grid.Col>
         </Grid>
-
-        {matches == false ? (
-          <RenderForMobile columns={columns} records={records} />
+        {matches !== true ? (
+          <RenderTableComp />
+        ) : RenderMobile == undefined ? (
+          <RenderTableComp />
         ) : (
-          <Table verticalSpacing={'md'} {...props}>
-            <Table.Thead
-              style={{
-                background: theme.colors.gray[1],
-                borderTop: `1px solid ${theme.colors.gray[3]}`,
-              }}
-            >
-              <Table.Tr>
-                {columns.map((ele, idx) => (
-                  <Table.Th
-                    key={idx}
-                    {...(ele.thProps ?? {})}
-                    fw={'500'}
-                    c={'dimmed'}
-                    tt={'capitalize'}
-                  >
-                    {typeof ele.header === 'function' ? <ele.header /> : ele.header}
-                  </Table.Th>
-                ))}
-              </Table.Tr>
-            </Table.Thead>
-            <Table.Tbody>{rows}</Table.Tbody>
-          </Table>
+          <Stack>
+            {records.map((record, index) => {
+              return (
+                <React.Fragment>
+                  <RenderMobile record={record} key={index} />
+                </React.Fragment>
+              );
+            })}
+          </Stack>
         )}
 
         {records.length == 0 && (
@@ -73,31 +89,4 @@ const FlexDataTable: React.FC<FlexDataTableProps> = ({
   );
 };
 
-function RenderForMobile({ records, columns }: { records: any[]; columns: FlexDataTableColumn[] }) {
-  return (
-    <Box>
-      {records.map((record, idxroot, []) => (
-        <Box>
-          <Grid key={`${record.id}`} gutter={'2px'} p={'sm'}>
-            {columns.map((element, idx) => {
-              if (element.render) {
-                return (
-                  <Grid.Col span={{ base: 6 }} key={idxroot + idx}>
-                    <element.render record={record} />
-                  </Grid.Col>
-                );
-              }
-              return (
-                <Grid.Col key={idxroot + idx} span={{ base: 6 }}>
-                  {record[element.accessor]}
-                </Grid.Col>
-              );
-            })}
-          </Grid>
-          <Divider variant="dashed" />
-        </Box>
-      ))}
-    </Box>
-  );
-}
 export default FlexDataTable;

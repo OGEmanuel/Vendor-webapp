@@ -14,9 +14,8 @@ export default function useLoggedInUser() {
     },
     logout: () => {
       localStorage.clear();
-
+      window.open("/")
       queryClient.invalidateQueries();
-      window.location.reload()
     },
   };
 }

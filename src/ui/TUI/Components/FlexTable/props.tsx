@@ -12,5 +12,6 @@ export type FlexDataTableProps = {
   columns: FlexDataTableColumn[];
   queryAccessors?: string[];
   records: Record<string, any>[];
-  headerNode:React.ReactNode
+  headerNode: React.ReactNode;
+  RenderMobile?: React.FC<{ record: Record<string, any> }>;
 } & TableProps;
