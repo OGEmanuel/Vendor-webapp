@@ -1,6 +1,6 @@
 import FlexDataTable from '@/ui/TUI/Components/FlexTable/FlexTable';
 import TUIPageShell from '@/ui/TUI/Templates/TUIPageShell';
-import { ActionIcon, Avatar, Badge, Box, Group, Menu, Text } from '@mantine/core';
+import { ActionIcon, Avatar, Badge, Box, Group, Menu, Select, Text } from '@mantine/core';
 import {
   MoreVerticalIcon,
   UserEdit01Icon,
@@ -12,6 +12,9 @@ export default function ManageMembers() {
   return (
     <TUIPageShell title="Members">
       <FlexDataTable
+         RenderMobile={({ }) => {
+          return <Box></Box>;
+        }}
         columns={[
           {
             header: 'Name',
@@ -93,7 +96,13 @@ export default function ManageMembers() {
             accessor: '',
           },
         ]}
-        headerNode={<div></div>}
+        headerNode={
+          <div>
+            <Group justify="flex-end">
+              <Select placeholder="all outlets" />
+            </Group>
+          </div>
+        }
         records={[{}, {}, {}, {}]}
       />
     </TUIPageShell>

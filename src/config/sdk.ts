@@ -1,6 +1,6 @@
 import { AuthApi, MeApi, PasswordApi, VerificationsApi } from '@/sdk/auth';
 import { appAxiosInstance } from './axios-instance';
-import { UploadApi, BanksApi, DataTypesApi} from '@/sdk/miscellaneous';
+import { UploadApi, BanksApi, DataTypesApi, LocationApi} from '@/sdk/miscellaneous';
 import { MemberApi, OutletApi, VendorApi } from '@/sdk/vendor';
 import { ServerPath } from '@/sdk/setup';
 
@@ -17,5 +17,8 @@ export const memberApi = new MemberApi(undefined, ServerPath, appAxiosInstance);
 
 
 export const banksApi = new BanksApi(undefined, ServerPath, appAxiosInstance);
+
+
+export const locationApi = new LocationApi(undefined, ServerPath, appAxiosInstance);
 
 export const dataTypesApi = new DataTypesApi(undefined, ServerPath, appAxiosInstance);

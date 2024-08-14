@@ -20,8 +20,8 @@ export default function useAppModal() {
       centered: true,
       children: (
         <Box>
-          <Group justify="space-between">
-            <Box>{title && <Title>{title}</Title>}</Box>
+          <Group justify="space-between" mb={"md"}>
+            <Box>{title && <Title order={3}>{title}</Title>}</Box>
             <Avatar
               onClick={() => {
                 modals.close(id);
