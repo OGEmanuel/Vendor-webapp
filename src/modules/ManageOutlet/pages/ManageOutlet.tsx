@@ -7,6 +7,7 @@ import OutletAvailability from './OutletAvailability';
 import OutletRatings from './OutletRatings';
 import useOutletActions from '../hooks/useOutletActions';
 
+
 export default function ManageOutlet() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
