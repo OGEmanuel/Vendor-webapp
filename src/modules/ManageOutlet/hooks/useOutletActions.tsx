@@ -1,7 +1,7 @@
 import useAppModal from '@/hooks/modals/useAppModal';
 import UpdateOutletDetailsForm from '../components/UpdateOutletDetailsForm';
 import { Outlet } from '@/sdk/vendor';
-import noticeIll from '@/ui/assets/illustrations/noticeInfoIll.svg';
+import noticeIll from '@/ui/assets/illustrations/NoticeInfoIll.svg';
 import { Box, Button, Center, Group, Stack, Text, Title } from '@mantine/core';
 import useConfirm from '@/hooks/modals/useConfirm';
 import { modals } from '@mantine/modals';
