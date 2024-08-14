@@ -4,5 +4,6 @@ import { useTUIAppContext } from './ui/TUI/Templates/TUIAppContext';
 
 export function Router() {
   const { authToken } = useTUIAppContext();
-  return <div>{authToken !== '' ? <AppRoutes /> : <AuthRoutes />}</div>;
+  console.log(authToken, "token")
+  return <div>{authToken!==undefined ? <AppRoutes /> : <AuthRoutes />}</div>;
 }
