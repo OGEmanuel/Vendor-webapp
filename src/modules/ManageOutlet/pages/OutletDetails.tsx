@@ -1,10 +1,66 @@
-import { OutletSummary } from '@/sdk/vendor';
+import useMemberActions from '@/modules/ManageMember/hooks/useMemberActions';
+import { Member, OutletSummary } from '@/sdk/vendor';
 import Card from '@/ui/TUI/Components/Card';
 import FlexDataTable from '@/ui/TUI/Components/FlexTable/FlexTable';
-import { ActionIcon, Badge, Box, Grid, Group, Menu, Stack, Text } from '@mantine/core';
+import {
+  ActionIcon,
+  Avatar,
+  Badge,
+  Box,
+  Grid,
+  Group,
+  Menu,
+  Stack,
+  Text,
+} from '@mantine/core';
 import { MoreVerticalIcon } from 'hugeicons-react';
 
 export default function OutletDetails({ outletSummary }: { outletSummary: OutletSummary }) {
+  const { editMember, removeMember } = useMemberActions();
+
+  function RenderMemberName({ name }: Member) {
+    return (
+      <Box>
+        <Group>
+          <Avatar>{name?.slice(0, 1)}</Avatar>
+          <Box>
+            <Text>{name}</Text>
+          </Box>
+        </Group>
+      </Box>
+    );
+  }
+
+  function RenderMore(member: Member) {
+    return (
+      <Group justify="flex-end">
+        <Menu>
+          <Menu.Target>
+            <ActionIcon variant="default">
+              <MoreVerticalIcon />
+            </ActionIcon>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item
+              onClick={() => {
+                editMember(member);
+              }}
+            >
+              Edit
+            </Menu.Item>
+            <Menu.Item
+              onClick={() => {
+                removeMember(member);
+              }}
+            >
+              Remove member
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+      </Group>
+    );
+  }
+
   return (
     <Box>
       <Grid>
@@ -65,17 +121,50 @@ export default function OutletDetails({ outletSummary }: { outletSummary: Outlet
         </Grid.Col>
         <Grid.Col span={{ md: 6 }}>
           <FlexDataTable
-            headerNode={
-              <Group>
-                <Text fw={'bold'}>Members</Text>
-              </Group>
-            }
+            RenderMobile={({ record }) => {
+              return (
+                <Stack p={'md'}>
+                  <Group>
+                    <Box flex={1}>
+                      <RenderMemberName {...(record as Member)} />
+                    </Box>
+                    <Group>
+                      <Badge variant="light">{record.status}</Badge>
+                      <RenderMore {...(record as Member)} />
+                    </Group>
+                  </Group>
+                </Stack>
+              );
+            }}
             columns={[
-              { header: 'Name', accessor: '' },
-              { header: 'Status', accessor: '' },
-              { header: 'Role', accessor: '' },
+              {
+                header: 'Name',
+                render: ({ record }) => {
+                  const _ = record as Member;
+                  return <RenderMemberName {..._} />;
+                },
+                accessor: '',
+              },
+              {
+                header: 'Role',
+                accessor: 'role',
+              },
+              {
+                header: '',
+                render: ({ record }) => {
+                  return <RenderMore {...(record as Member)} />;
+                },
+                accessor: '',
+              },
             ]}
-            records={outletSummary.members}
+            headerNode={
+              <div>
+                <Group>
+                  <Text fw={"bold"}>Members</Text>
+                </Group>
+              </div>
+            }
+            records={outletSummary.members ?? []}
           />
         </Grid.Col>
       </Grid>
