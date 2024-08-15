@@ -188,6 +188,12 @@ export interface CreateOutletDTO {
      */
     'marketSegments': Array<string>;
     /**
+     * Market segment that the outlet serves.
+     * @type {string}
+     * @memberof CreateOutletDTO
+     */
+    'primaryMarketSegment': string;
+    /**
      * Address details of the outlet.
      * @type {Address}
      * @memberof CreateOutletDTO
@@ -349,10 +355,10 @@ export interface InviteMemberDTO {
     'name'?: string;
     /**
      * Role of the member within the outlet.
-     * @type {number}
+     * @type {string}
      * @memberof InviteMemberDTO
      */
-    'role': number;
+    'role': InviteMemberDTORoleEnum;
     /**
      * Status of the member within the outlet.
      * @type {string}
@@ -385,6 +391,13 @@ export interface InviteMemberDTO {
     'phone': string;
 }
 
+export const InviteMemberDTORoleEnum = {
+    SuperAdmin: 'super-admin',
+    Admin: 'admin',
+    Manager: 'manager'
+} as const;
+
+export type InviteMemberDTORoleEnum = typeof InviteMemberDTORoleEnum[keyof typeof InviteMemberDTORoleEnum];
 export const InviteMemberDTOStatusEnum = {
     Enabled: 'enabled',
     Disabled: 'disabled'
@@ -572,6 +585,12 @@ export interface Outlet {
      * @memberof Outlet
      */
     'marketSegments': Array<string>;
+    /**
+     * Market segment that the outlet serves.
+     * @type {string}
+     * @memberof Outlet
+     */
+    'primaryMarketSegment': string;
     /**
      * Unique identifier for the zone where the outlet is located.
      * @type {string}
@@ -762,6 +781,12 @@ export interface OutletSummary {
      * @memberof OutletSummary
      */
     'marketSegments': Array<string>;
+    /**
+     * Market segment that the outlet serves.
+     * @type {string}
+     * @memberof OutletSummary
+     */
+    'primaryMarketSegment': string;
     /**
      * Unique identifier for the zone where the outlet is located.
      * @type {string}
@@ -1000,6 +1025,12 @@ export interface UpdateOutletDTO {
      * @memberof UpdateOutletDTO
      */
     'marketSegments': Array<string>;
+    /**
+     * Market segment that the outlet serves.
+     * @type {string}
+     * @memberof UpdateOutletDTO
+     */
+    'primaryMarketSegment': string;
     /**
      * Address details of the outlet.
      * @type {Address}

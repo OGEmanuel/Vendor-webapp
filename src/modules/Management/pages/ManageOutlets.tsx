@@ -9,7 +9,7 @@ import useOutletActions from '@/modules/ManageOutlet/hooks/useOutletActions';
 
 export default function ManageOutlets() {
   const { data: outlets } = useGetVendorOutletsQuery();
-  const { createOutlet } = useOutletActions();
+  const { createOutlet, editOutlet } = useOutletActions();
 
   function RenderOutletNameCol({ outlet: { outletName, address } }: { outlet: Outlet }) {
     return (
@@ -60,6 +60,13 @@ export default function ManageOutlets() {
             >
               View
             </Menu.Item>
+            <Menu.Item
+              onClick={() => {
+                editOutlet(outlet);
+              }}
+            >
+              Edit
+            </Menu.Item>
           </Menu.Dropdown>
         </Menu>
       </Group>
@@ -83,7 +90,7 @@ export default function ManageOutlets() {
     >
       <FlexDataTable
         RenderMobile={({ record }) => {
-          let { marketSegments } = record as Outlet;
+          let { primaryMarketSegment } = record as Outlet;
           return (
             <Box
               style={(theme) => {
@@ -102,7 +109,7 @@ export default function ManageOutlets() {
               <Divider />
               <Group p={'sm'}>
                 <Box flex={1}>
-                  <Box tt={'capitalize'}>🛒{marketSegments[0]}</Box>
+                  <Box tt={'capitalize'}>🛒{primaryMarketSegment}</Box>
                 </Box>
                 <Group>
                   <RenderAvailability outlet={record as Outlet} />
@@ -123,8 +130,8 @@ export default function ManageOutlets() {
           {
             header: 'Market type',
             render: ({ record }) => {
-              let { marketSegments } = record as Outlet;
-              return <Box tt={'capitalize'}>🛒{marketSegments[0]}</Box>;
+              let { primaryMarketSegment } = record as Outlet;
+              return <Box tt={'capitalize'}>🛒{primaryMarketSegment}</Box>;
             },
             accessor: '',
           },
