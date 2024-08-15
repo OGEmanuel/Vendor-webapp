@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import useLoggedInUser from '../useLoggedInUser';
 import { meApi } from '@/config/sdk';
 import { UpdateAccountDTO, UpdateAccountPasswordDTO } from '@/sdk/auth';
+import { showNotification } from '@mantine/notifications';
 
 export function useProfileMutation() {
   const { reload } = useLoggedInUser();
@@ -24,6 +25,7 @@ export function useProfilePasswordMutation() {
       return response;
     },
     onSuccess: () => {
+      showNotification({message:"Your password has been updated successfully."})
       reload();
     },
   });

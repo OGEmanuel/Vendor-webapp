@@ -1,6 +1,5 @@
 import { useTUIAppContext } from '@/ui/TUI/Templates/TUIAppContext';
 import useGetUserProfileQuery from './queries/useGetUserProfileQuery';
-import { queryClient } from '@/config/queryClient';
 
 export default function useLoggedInUser() {
   useTUIAppContext();
@@ -14,8 +13,7 @@ export default function useLoggedInUser() {
     },
     logout: () => {
       localStorage.clear();
-      window.open("/")
-      queryClient.invalidateQueries();
+      window.open('/',"_self");
     },
   };
 }
