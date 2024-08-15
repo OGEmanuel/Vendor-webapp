@@ -76,8 +76,9 @@ export default function ForgotPassword() {
                 Check your email
               </Text>
               <Text ta={'center'}>
-                Your password has been successfully reset. <br />
-                You can now sign in with your new password.
+                Use the link sent to <b>{form.values.email}</b> to
+                <br />
+                reset your password.
               </Text>
             </Box>
             <Button

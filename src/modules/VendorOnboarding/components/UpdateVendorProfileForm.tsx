@@ -18,8 +18,10 @@ export default function UpdateVendorProfileForm({ initial }: { initial: Vendor }
         /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value ?? '') ? null : 'Invalid email address',
       contactPhone: (value) =>
         /^\+[1-9]{1,3}[0-9]{10,14}$/.test(value ?? '') ? null : 'Invalid phone number',
-   
-   
+      longDescription: (value) =>
+        value ?? ''.length > 50 ? null : 'Long description should be at least 50 characters',
+      shortDescription: (value) =>
+        value ?? ''.length > 10 ? null : 'Short description should be at least 10 characters',
       vendorName: (value) => (value ? null : 'Vendor name is required'),
     },
   });

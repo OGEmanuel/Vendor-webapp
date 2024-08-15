@@ -30,7 +30,7 @@ export default function SetupVendorProfileForm() {
       // coverPhoto: (value) => (value ? null : 'Cover photo is required'),
       // logo: (value) => (value ? null : 'Logo is required'),
       longDescription: (value) =>
-        value ?? ''.length > 20 ? null : 'Long description should be at least 50 characters',
+        value ?? ''.length > 50 ? null : 'Long description should be at least 50 characters',
       shortDescription: (value) =>
         value ?? ''.length > 10 ? null : 'Short description should be at least 10 characters',
       vendorName: (value) => (value ? null : 'Vendor name is required'),

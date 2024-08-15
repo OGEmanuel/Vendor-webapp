@@ -1,7 +1,6 @@
 import { authApi } from '@/config/sdk';
 import { CreateAccountDTO } from '@/sdk/auth';
 import { useTUIAppContext } from '@/ui/TUI/Templates/TUIAppContext';
-import { showNotification } from '@mantine/notifications';
 import { useMutation } from '@tanstack/react-query';
 
 export default function useRegisterMutation() {
@@ -14,8 +13,6 @@ export default function useRegisterMutation() {
     onSuccess(data) {
       setAuthToken(data.data.token);
     },
-    onError() {
-      showNotification({ message: 'Error occured creating your account. Please try again.' });
-    },
+    onError() {},
   });
 }

@@ -39,7 +39,11 @@ function Form() {
   return (
     <form
       onSubmit={form.onSubmit((values) => {
-        mutate(values);
+        mutate(values, {
+          onSuccess: () => {
+            form.reset();
+          },
+        });
       })}
     >
       <Stack>
@@ -98,7 +102,7 @@ function Form() {
           <Button
             color="red"
             variant="default"
-            type='submit'
+            type="submit"
             disabled={form.isValid() == true ? false : true}
             loading={isPending}
           >
