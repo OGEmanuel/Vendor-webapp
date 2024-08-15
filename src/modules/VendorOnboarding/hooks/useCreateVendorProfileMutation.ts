@@ -6,9 +6,11 @@ import { nprogress } from '@mantine/nprogress';
 import { useMutation } from '@tanstack/react-query';
 import { useContext } from 'react';
 import { OnboardingContext } from '../pages/VendorOnboarding';
+import useActiveVendor from '@/hooks/useActiveVendor';
 
 export default function useCreateVendorProfileMutation() {
   const { init } = useVendorInit();
+  const { reloadVendorSummary } = useActiveVendor();
   const { id } = useLoggedInUser();
   const { next } = useContext(OnboardingContext);
   return useMutation({
@@ -24,8 +26,10 @@ export default function useCreateVendorProfileMutation() {
       nprogress.reset();
     },
     onSuccess: async () => {
-      console.log('logged in user');
+      // init vendor credentials
       await init();
+      // reload vendor summary with active credentials
+      await reloadVendorSummary();
       next();
       nprogress.reset();
     },

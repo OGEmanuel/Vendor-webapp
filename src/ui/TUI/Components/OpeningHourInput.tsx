@@ -19,7 +19,7 @@ export default function OpeningHoursInput({
   }
 
   const theme = useMantineTheme();
-  console.log(payload, "opening hours");
+
   return (
     <Grid>
       <Grid.Col span={{ base: 5 }}>
@@ -40,7 +40,7 @@ export default function OpeningHoursInput({
         {payload?.alwaysOpen == false ? (
           <Paper p="xs" bg={theme.colors.gray[0]} withBorder>
             <Group>
-              <Moon02Icon  color={theme.colors.gray[7]}/>
+              <Moon02Icon color={theme.colors.gray[7]} />
               <Text c={theme.colors.gray[7]}>Unavailable</Text>
             </Group>
           </Paper>

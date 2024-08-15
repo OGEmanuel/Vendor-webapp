@@ -1,4 +1,13 @@
-import { Avatar, Box, CloseIcon, Group, MantineSize, Title, useMantineTheme } from '@mantine/core';
+import {
+  Avatar,
+  Box,
+  CloseIcon,
+  Group,
+  MantineSize,
+  Stack,
+  Title,
+  useMantineTheme,
+} from '@mantine/core';
 import { randomId, useMediaQuery } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import React from 'react';
@@ -19,8 +28,8 @@ export default function useAppModal() {
       fullScreen: matches == false ? true : false,
       centered: true,
       children: (
-        <Box>
-          <Group justify="space-between" mb={"md"}>
+        <Stack h={'100%'}>
+          <Group justify="space-between" mb={'md'}>
             <Box>{title && <Title order={3}>{title}</Title>}</Box>
             <Avatar
               onClick={() => {
@@ -30,8 +39,10 @@ export default function useAppModal() {
               <CloseIcon />
             </Avatar>
           </Group>
-          {content}
-        </Box>
+          <Stack flex={1} justify="center">
+            {content}
+          </Stack>
+        </Stack>
       ),
       withCloseButton: false,
       onClose() {

@@ -1,5 +1,5 @@
 import { Outlet, UpdateOutletDTO } from '@/sdk/vendor';
-import { Button, Grid, MultiSelect, Textarea, TextInput } from '@mantine/core';
+import { Button, Grid, Select, Textarea, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useQuery } from '@tanstack/react-query';
 import { dataTypesApi } from '@/config/sdk';
@@ -39,10 +39,9 @@ export default function UpdateOutletDetailsForm({ initial }: { initial: Outlet }
         </Grid.Col>
 
         <Grid.Col span={{ md: 12 }}>
-          <MultiSelect
-            color="dark"
+          <Select
             label={'Market Type'}
-            {...form.getInputProps('marketSegments')}
+            {...form.getInputProps('primaryMarketSegment')}
             data={marketTypes?.data.map((_) => {
               return { label: _.displayName, value: _.handle };
             })}

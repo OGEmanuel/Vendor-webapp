@@ -4,8 +4,8 @@ import {
   Button,
   Grid,
   Group,
-  MultiSelect,
   Paper,
+  Select,
   Stack,
   Text,
   TextInput,
@@ -97,10 +97,9 @@ export default function UpdateDefaultOutletForm({ initial }: { initial: Outlet }
         </Grid.Col>
 
         <Grid.Col span={{ md: 12 }}>
-          <MultiSelect
-            color="dark"
+          <Select
             label={'Market Type'}
-            {...form.getInputProps('marketSegments')}
+            {...form.getInputProps('primaryMarketSegment')}
             data={marketTypes?.data.map((_) => {
               return { label: _.displayName, value: _.handle };
             })}
