@@ -1,5 +1,5 @@
 import { CreateOutletDTO } from '@/sdk/vendor';
-import { Button, Grid, MultiSelect, Text, Textarea, TextInput } from '@mantine/core';
+import { Button, Grid, Select, Text, Textarea, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useQuery } from '@tanstack/react-query';
 import { dataTypesApi } from '@/config/sdk';
@@ -8,7 +8,7 @@ import AddressEditorFormExtension from '@/ui/TUI/Components/AddressEditorFormExt
 import { DefaultDaysofWork } from '@/utils';
 import useNewOutletMutation from '../hooks/useNewOutletMutation';
 
-export default function NewOutletForm({onComplete}:{onComplete:()=>void}) {
+export default function NewOutletForm({ onComplete }: { onComplete: () => void }) {
   const { isPending, mutate } = useNewOutletMutation();
   const { data: marketTypes } = useQuery({
     queryKey: ['market-types'],
@@ -19,6 +19,7 @@ export default function NewOutletForm({onComplete}:{onComplete:()=>void}) {
   const form = useForm<CreateOutletDTO>({
     initialValues: {
       marketSegments: [],
+      primaryMarketSegment: '',
       caption: '',
       config: {
         daysOfWork: DefaultDaysofWork,
@@ -45,10 +46,12 @@ export default function NewOutletForm({onComplete}:{onComplete:()=>void}) {
       onSubmit={form.onSubmit((values) => {
         mutate(
           { payload: values },
-          { onSuccess: () => {
-            onComplete()
-            showNotification({ message: 'Updated successfully...' })
-          } }
+          {
+            onSuccess: () => {
+              onComplete();
+              showNotification({ message: 'Updated successfully...' });
+            },
+          }
         );
       })}
     >
@@ -63,10 +66,9 @@ export default function NewOutletForm({onComplete}:{onComplete:()=>void}) {
         </Grid.Col>
 
         <Grid.Col span={{ md: 12 }}>
-          <MultiSelect
-            color="dark"
+          <Select
             label={'Market Type'}
-            {...form.getInputProps('marketSegments')}
+            {...form.getInputProps('primaryMarketSegment')}
             data={marketTypes?.data.map((_) => {
               return { label: _.displayName, value: _.handle };
             })}

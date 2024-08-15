@@ -29,6 +29,7 @@ export function useUpdateOutletAsClosedMutation() {
       nprogress.start();
       const data = await outletApi.vendorOutletAdminControllerUpdateOutlet(outletId, payload);
       queryClient.invalidateQueries({ queryKey: [outletId ?? ''] });
+      queryClient.invalidateQueries({ queryKey: ['get-outlets'] });
       return data;
     },
     onError: (err) => {

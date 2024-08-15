@@ -35,7 +35,7 @@ export default function OutletDetails({ outletSummary }: { outletSummary: Outlet
 
               <Group justify="space-between">
                 <Text>Segment</Text>
-                <Text tt={'capitalize'}>{outletSummary?.marketSegments[0]}</Text>
+                <Text tt={'capitalize'}>{outletSummary?.primaryMarketSegment}</Text>
               </Group>
 
               <Group justify="space-between">

@@ -189,10 +189,10 @@ export interface CreateOutletDTO {
     'marketSegments': Array<string>;
     /**
      * Market segment that the outlet serves.
-     * @type {Array<string>}
+     * @type {string}
      * @memberof CreateOutletDTO
      */
-    'primaryMarketSegment': Array<string>;
+    'primaryMarketSegment': string;
     /**
      * Address details of the outlet.
      * @type {Address}
@@ -587,10 +587,10 @@ export interface Outlet {
     'marketSegments': Array<string>;
     /**
      * Market segment that the outlet serves.
-     * @type {Array<string>}
+     * @type {string}
      * @memberof Outlet
      */
-    'primaryMarketSegment': Array<string>;
+    'primaryMarketSegment': string;
     /**
      * Unique identifier for the zone where the outlet is located.
      * @type {string}
@@ -783,10 +783,10 @@ export interface OutletSummary {
     'marketSegments': Array<string>;
     /**
      * Market segment that the outlet serves.
-     * @type {Array<string>}
+     * @type {string}
      * @memberof OutletSummary
      */
-    'primaryMarketSegment': Array<string>;
+    'primaryMarketSegment': string;
     /**
      * Unique identifier for the zone where the outlet is located.
      * @type {string}
@@ -1027,10 +1027,10 @@ export interface UpdateOutletDTO {
     'marketSegments': Array<string>;
     /**
      * Market segment that the outlet serves.
-     * @type {Array<string>}
+     * @type {string}
      * @memberof UpdateOutletDTO
      */
-    'primaryMarketSegment': Array<string>;
+    'primaryMarketSegment': string;
     /**
      * Address details of the outlet.
      * @type {Address}
