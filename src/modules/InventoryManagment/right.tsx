@@ -9,12 +9,9 @@ import {
   Paper,
   Text,
 } from '@mantine/core';
-import { useHover } from '@mantine/hooks';
 import { ArrowDown01Icon, MoreVerticalIcon, Store01Icon } from 'hugeicons-react';
 
 const Right = () => {
-  const { hovered, ref } = useHover();
-
   return (
     <Group>
       <Menu width={320}>
@@ -65,7 +62,7 @@ const Right = () => {
       </Menu>
       <Menu shadow="md" width={140}>
         <MenuTarget>
-          <Button rightSection={<MoreVerticalIcon />} size="md" radius={8}>
+          <Button rightSection={<MoreVerticalIcon size={24} />} size="md" radius={8}>
             Add
           </Button>
         </MenuTarget>

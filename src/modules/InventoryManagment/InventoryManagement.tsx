@@ -3,18 +3,24 @@ import Right from './right';
 import { Flex, Group, Text } from '@mantine/core';
 import EmptyInventoryIcon from '@/ui/assets/illustrations/svg-jsx.tsx/EmptyInventoryIcon';
 import InventoryTabs from './tabs';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Overview from './overview';
 import Categories from './categories';
 import Items from './items';
 import Options from './options';
+import { useEffect } from 'react';
 
 export default function InventoryManagement() {
   const [params] = useSearchParams();
+  const navigate = useNavigate();
   const overview = params.get('tabId') === 'overview';
   const categories = params.get('tabId') === 'categories';
   const items = params.get('tabId') === 'items';
   const options = params.get('tabId') === 'options';
+
+  useEffect(() => {
+    navigate(`?tabId=overview`);
+  }, []);
   // console.log(params.get('tabId') ?? 'overview');
 
   return (
