@@ -1,3 +1,4 @@
+import WhiteMenuIcon from '@/ui/assets/illustrations/svg-jsx/WhiteMenuIcon';
 import {
   Button,
   Flex,
@@ -9,7 +10,7 @@ import {
   Paper,
   Text,
 } from '@mantine/core';
-import { ArrowDown01Icon, MoreVerticalIcon, Store01Icon } from 'hugeicons-react';
+import { ArrowDown01Icon, Store01Icon } from 'hugeicons-react';
 
 const Right = () => {
   return (
@@ -62,7 +63,7 @@ const Right = () => {
       </Menu>
       <Menu shadow="md" width={140}>
         <MenuTarget>
-          <Button rightSection={<MoreVerticalIcon size={24} />} size="md" radius={8}>
+          <Button rightSection={<WhiteMenuIcon />} size="md" radius={8}>
             Add
           </Button>
         </MenuTarget>

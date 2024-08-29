@@ -1,29 +1,37 @@
-import MoreIcon from '@/ui/assets/illustrations/svg-jsx.tsx/MoreIcon';
-import { Box, Button, Flex, Group, Input, Paper, Text } from '@mantine/core';
+import MoreIcon from '@/ui/assets/illustrations/svg-jsx/MoreIcon';
+import { Accordion, Box, Button, Flex, Group, Paper, Text } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
-import { Search01Icon } from 'hugeicons-react';
 import { Image } from '@mantine/core';
 import sample from '@/ui/assets/foodsample.png';
 import { ReactNode } from 'react';
+import { useState } from 'react';
+import EmptyInventoryIcon from '@/ui/assets/illustrations/svg-jsx/EmptyInventoryIcon';
+import EmptyState from './EmptyState';
+import TableHeader from './TableHeader';
+import TableBody from './TableBody';
 
 const Overview = () => {
-  const { hovered, ref } = useHover();
+  const data = [];
 
-  return (
+  for (let i = 0; i < 4; i++) {
+    data.push({
+      id: i,
+      name: 'Smoked Suya Jollof rice',
+      description: 'Classic Nigerian rice dish cooked in a tomato base',
+      price: '₦ 4,500',
+      stock: Math.random() > 0.5 ? true : false,
+      image: sample,
+    });
+  }
+
+  return data.length > 0 ? (
     <Box>
-      <Paper bd={'1px solid #ECECEC'} mt={40} radius={'8px 8px 0px 0px'} px={16} py={12}>
-        <Group justify="space-between">
-          <Input leftSection={<Search01Icon size={'20px'} />} width={360} placeholder={'Search'} />
-          <Button bg={'#FFFFFF'} c={'#3C3C3D'} bd={'1px solid #ECECEC'} fw={500}>
-            Rearrange
-          </Button>
-        </Group>
-      </Paper>
-      <Box
-        bd={'1px solid #ECECEC'}
-        p={16}
-        style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
-      >
+      <TableHeader>
+        <Button bg={'#FFFFFF'} c={'#3C3C3D'} bd={'1px solid #ECECEC'} fw={500}>
+          Rearrange
+        </Button>
+      </TableHeader>
+      <TableBody p={16} gap={16}>
         <ItemsTable title={'Mega chows'}>
           <Items />
         </ItemsTable>
@@ -46,15 +54,21 @@ const Overview = () => {
           </Text>
           <Box style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <Paper bd={'1px solid #ECECEC'} radius={16}>
-              <Items />
+              <Items noBorderTop />
             </Paper>
             <Paper bd={'1px solid #ECECEC'} radius={16}>
-              <Items />
+              <Items noBorderTop />
             </Paper>
           </Box>
         </Box>
-      </Box>
+      </TableBody>
     </Box>
+  ) : (
+    <EmptyState
+      emptyIcon={<EmptyInventoryIcon />}
+      emptyText={'No Inventory yet'}
+      emptySubText={'Start adding categories and items to make your outlet visible to customers.'}
+    />
   );
 };
 
@@ -62,44 +76,78 @@ export default Overview;
 
 const ItemsTable = ({ title, children }: { title: string; children?: ReactNode }) => {
   const { hovered, ref } = useHover();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleAccordion = () => setIsOpen(!isOpen);
 
   return (
-    <Paper pt={18} bd={'1px solid #ECECEC'} radius={16}>
-      <Group justify="space-between" pb={16} px={16}>
-        <Group gap={8}>
-          <Text fw={700} size={'20px'}>
-            {title}
-          </Text>
-          <Paper
-            fw={500}
-            c={'#7E7E80'}
-            py={8}
-            px={16}
-            bd={'1px solid #ECECEC'}
-            radius={68}
-            ref={ref}
-            style={{ backgroundColor: hovered ? '#F2F2F2' : '#FFFFFF' }}
-          >
-            <Text size={'14px'}>4 items</Text>
-          </Paper>
-        </Group>
-        <Group align="center" gap={10}>
-          <Button c={'#3C3C3D'} bg={'#F5F5F6'} fw={500}>
-            Hide items
-          </Button>
-          <Paper bd={'1px solid #ECECEC'} p={6}>
-            <Flex h={'100%'} justify={'center'} align={'center'}>
-              <MoreIcon />
-            </Flex>
-          </Paper>
-        </Group>
-      </Group>
-      {children}
-    </Paper>
+    <Accordion
+      chevron={null}
+      styles={{
+        control: {
+          padding: 0,
+          width: 'fit-content',
+        },
+        chevron: {
+          display: 'none', // Hide the chevron completely
+        },
+        item: {
+          border: 'none',
+        },
+        content: {
+          padding: 0,
+        },
+      }}
+    >
+      <Accordion.Item value="items">
+        <Paper pt={18} bd={'1px solid #ECECEC'} radius={16}>
+          <Group justify="space-between" pb={16} px={16}>
+            <Group gap={8}>
+              <Text fw={700} size={'20px'}>
+                {title}
+              </Text>
+              <Paper
+                fw={500}
+                c={'#7E7E80'}
+                py={8}
+                px={16}
+                bd={'1px solid #ECECEC'}
+                radius={68}
+                ref={ref}
+                style={{ backgroundColor: hovered ? '#F2F2F2' : '#FFFFFF' }}
+              >
+                <Text size={'14px'}>4 items</Text>
+              </Paper>
+            </Group>
+            <Group align="center" gap={10}>
+              <Accordion.Control w={110} h={40} style={{ backgroundColor: 'transparent' }}>
+                <Button
+                  c={'#3C3C3D'}
+                  bg={isOpen ? '#FFFFFF' : '#F5F5F6'}
+                  fw={500}
+                  onClick={toggleAccordion}
+                  style={{
+                    border: isOpen ? '1px solid #ECECEC' : 'none',
+                  }}
+                >
+                  {isOpen ? 'View items' : 'Hide items'}
+                </Button>
+              </Accordion.Control>
+              <Paper bd={'1px solid #ECECEC'} p={6}>
+                <Flex h={'100%'} justify={'center'} align={'center'}>
+                  <MoreIcon />
+                </Flex>
+              </Paper>
+            </Group>
+          </Group>
+          <Accordion.Panel>{children}</Accordion.Panel>
+        </Paper>
+      </Accordion.Item>
+    </Accordion>
   );
 };
 
-const Items = () => {
+const Items = ({ noBorderTop }: { noBorderTop?: boolean }) => {
   const data = [];
 
   for (let i = 0; i < 4; i++) {
@@ -117,7 +165,7 @@ const Items = () => {
       py={20}
       px={16}
       style={{
-        borderTop: '1px solid #ECECEC',
+        borderTop: noBorderTop ? 'none' : '1px solid #ECECEC',
         borderBottom: index === data.length - 1 ? 'none' : '1px solid #ECECEC',
       }}
       justify="space-between"
@@ -161,7 +209,7 @@ const Items = () => {
         <Text fw={500} c={'#3C3C3D'}>
           ₦ 4,500
         </Text>
-        <Paper bd={'1px solid #ECECEC'} p={6}>
+        <Paper bd={'1px solid #ECECEC'} p={6} radius={8}>
           <Flex h={'100%'} justify={'center'} align={'center'}>
             <MoreIcon />
           </Flex>
